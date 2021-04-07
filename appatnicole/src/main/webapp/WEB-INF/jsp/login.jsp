@@ -50,11 +50,7 @@
 							<div id="register-link" class="text-right">
 						</form>
 						<form id="login-form" class="form" action="/usuario" method="get">
-							<c:if test="${not empty mensagem}">
-								<div class="alert alert-warning">
-									<strong>Atenção!</strong> ${mensagem}
-								</div>
-							</c:if>
+
 
 							<div class="form-group">
 							<p class="text-center text-info">Novo Usuário</p>

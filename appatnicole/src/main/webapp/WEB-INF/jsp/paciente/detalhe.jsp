@@ -57,16 +57,7 @@
 								<label for="nome">Castrado:</label> <input type="checkbox"
 									class="form-check-input" id="castrado" name="castrado">
 							</div>
-							
-							<div class="form-group">
-								<label for="nome">Informe o Usuário:</label> <select
-									class="form-control" name="usuario.id">
-
-									<c:forEach var="u" items="${usuarios}">
-										<option value="${u.id}">${u.nome}</option>
-									</c:forEach>
-								</select>
-							</div>							
+													
 							<div class="form-group">
 
 								<input type="submit" name="submit" class="btn btn-info btn-md"

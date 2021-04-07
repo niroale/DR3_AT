@@ -22,16 +22,18 @@ public class PacienteController {
 	private UsuarioService usuarioService;
 	
 	@GetMapping(value = "/paciente")
-	public String showDetalhe(Model model) {
+	public String showDetalhe(Model model, @SessionAttribute("user") Usuario usuario) {
 		
-		model.addAttribute("lista", pacienteService.obterLista());
-		model.addAttribute("usuarios", usuarioService.obterLista());
+		model.addAttribute("lista", pacienteService.obterLista(usuario));
+
 		
 		return "paciente/detalhe";
 	}
 	
 	@PostMapping(value = "/paciente/incluir")
-	public String incluir(Paciente paciente) {
+	public String incluir(Paciente paciente, @SessionAttribute("user") Usuario usuario) {
+		
+		paciente.setUsuario(usuario);
 		
 		pacienteService.incluir(paciente);
 		
@@ -44,7 +46,7 @@ public class PacienteController {
 		pacienteService.excluir(id);
 	} catch (Exception e) {
 	model.addAttribute("msg", "Não é possível excluir paciente, verificar pedidos em aberto!");
-	return showDetalhe(model);
+	return showDetalhe(model, usuario);
 	}
 	return "redirect:/paciente";
 	}

@@ -24,6 +24,12 @@
 				</div>
 			</form>
 
+			<c:if test="${not empty msg}">
+				<div class="alert alert-danger">
+					<strong> ${msg} </strong> 
+				</div>
+			</c:if>
+
 			<div id="form_paciente-row"
 				class="row justify-content-center align-items-center">
 				<div id="form_paciente-column" class="col-md-6">
@@ -68,9 +74,37 @@
 				</div>
 			</div>
 
+			<c:if test="${not empty lista}">
+				<h4>Lista de Pacientes:</h4>
+				<table id="tabela" class="table table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nome</th>
+							<th>Email</th>
+							<th>GIT</th>
+							<th>Excluir</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="u" items="${lista}">
+							<tr>
+								<td>${u.id}</td>							
+								<td>${u.nome}</td>
+								<td>${u.email}</td>
+								<td>${u.git}</td>
+								<td><a href="/usuario/${u.id}/excluir"
+									class="btn btn-danger btn-xs"><span
+										class="glyphicon glyphicon-remove"></span>X</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:if>
+
 			<c:if test="${empty lista}">
 				<div class="alert alert-warning">
-					<p>Não há pedidos cadastrados no sistema!</p>
+					<p>Não há usuários cadastrados no sistema!</p>
 				</div>
 			</c:if>
 

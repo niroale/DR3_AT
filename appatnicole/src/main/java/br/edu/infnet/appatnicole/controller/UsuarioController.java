@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import br.edu.infnet.appatnicole.model.negocio.Usuario;
@@ -39,28 +40,34 @@ public class UsuarioController {
 	public String showDetalhe(Model model) {
 		
 		model.addAttribute("lista", usuarioService.obterLista());
-	
 		return "usuario/detalhe";
+
 	}
 	
 	@PostMapping(value = "/usuario/incluir")
-	public String incluir(Usuario usuario) {
-		
+	public String incluir(Usuario usuario ) {
+			
 		usuarioService.incluir(usuario);
 		
 		return "redirect:/";
-	}
-	
-	@GetMapping(value = "/usuario/{id}/excluir")
-	public String excluir(@PathVariable Integer id) {
-		
-		usuarioService.excluir(id);
-		
-		return "redirect:/usuario";
 	}
 	
 	@GetMapping(value = "/login")
 	public String login() {		
 		return "login";
 	}	
+	
+	@GetMapping(value = "/usuario/{id}/excluir")
+	public String excluir(Model model, @PathVariable Integer id ) {
+		
+		try {
+			usuarioService.excluir(id);			
+		} catch (Exception e) {
+			model.addAttribute("msg", "Não é possível excluir usuário, verificar pedidos/pacientes em aberto!");			
+			return showDetalhe(model);
+		}	
+		return "redirect:/usuario";
+	}
+	
+
 }
