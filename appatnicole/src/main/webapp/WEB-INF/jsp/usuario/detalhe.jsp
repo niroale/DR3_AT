@@ -20,7 +20,7 @@
 
 			<form action="/login">
 				<div class="form-group">
-					<button id="login" class="btn btn-light" href="/home">Login</button>
+					<button id="login" class="btn btn-light" href="/login">Login</button>
 				</div>
 			</form>
 

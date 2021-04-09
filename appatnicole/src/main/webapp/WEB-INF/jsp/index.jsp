@@ -16,10 +16,18 @@
 	<div id="login">
 		<h3 class="text-center text-white pt-5">Clínica ProntoPet</h3>
 		<div class="container">
+
+			<form action="/login">
+				<div class="form-group">
+					<button id="login" class="btn btn-light" href="/login">Logout</button>
+				</div>
+			</form>
+		
 			<div id="login-row"
 				class="row justify-content-center align-items-center">
 				<div id="login-column" class="col-md-6">
 					<div id="login-box" class="col-md-12">
+			
 						<h3 class="text-center text-info">Perfil</h3>
 
 						<h5>Usuário:</h5>
